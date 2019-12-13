@@ -24,8 +24,9 @@ def main():
     # the variable in_arg
     in_arg = get_input_args()
 
-    # Function that checks command line arguments using in_arg  
-    check_command_line_arguments(in_arg)
+    # Function that checks command line arguments using in_arg 
+    # Uncommemt line 29 to print full details 
+    #check_command_line_arguments(in_arg)
 
     
     # Define get_pet_labels function within the file get_pet_labels.py
@@ -37,8 +38,9 @@ def main():
     # this dictionary is returned from the function call as the variable results
     results = get_pet_labels(in_arg.dir)
 
-    # Function that checks Pet Images in the results Dictionary using results    
-    check_creating_pet_image_labels(results)
+    # Function that checks Pet Images in the results Dictionary using results
+    # Uncommemt line 43 to print full details     
+    #check_creating_pet_image_labels(results)
 
 
     # Classify_images function within the file classiy_images.py
@@ -52,7 +54,8 @@ def main():
     classify_images(in_arg.dir, results, in_arg.arch)
 
     # Function that checks Results Dictionary using results    
-    check_classifying_images(results)    
+    # Uncommemt line 58 to print full details 
+    #check_classifying_images(results)    
 
     # Adjust_results4_isadog function within the file adjust_results4_isadog.py
     # Once the adjust_results4_isadog function has been defined replace 'None' 
@@ -65,7 +68,8 @@ def main():
     adjust_results4_isadog(results, in_arg.dogfile)
 
     # Function that checks Results Dictionary for is-a-dog adjustment using results
-    check_classifying_labels_as_dogs(results)
+    # Uncommemt line 72 to print full details 
+    #check_classifying_labels_as_dogs(results)
 
     # Calculates_results_stats function within the file calculates_results_stats.py
     # This function creates the results statistics dictionary that contains a
@@ -76,14 +80,11 @@ def main():
     results_stats = calculates_results_stats(results)
 
     # Function that checks Results Statistics Dictionary using results_stats
-    check_calculating_results(results, results_stats)
+    # Uncommemt line 84 to print full details 
+    #check_calculating_results(results, results_stats)
 
 
     # Print_results function within the file print_results.py
-    # Once the print_results function has been defined replace 'None' 
-    # in the function call with in_arg.arch  Once you have done the 
-    # replacements your function call should look like this: 
-    #      print_results(results, results_stats, in_arg.arch, True, True)
     # Prints summary results, incorrect classifications of dogs (if requested)
     # and incorrectly classified breeds (if requested)
     print_results(results, results_stats, in_arg.arch, True, True)
@@ -92,7 +93,7 @@ def main():
     end_time = time()
      
     tot_time = end_time-start_time
-    print("\n** Total Elapsed Runtime:",
+    print("\nTotal Elapsed Runtime:",
           str(round((tot_time/3600)))+":"+str(round((tot_time%3600)/60))+":"
           +str(round((tot_time%3600)%60)) )
     

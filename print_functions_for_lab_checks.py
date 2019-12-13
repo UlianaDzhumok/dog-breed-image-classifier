@@ -12,7 +12,7 @@ def check_command_line_arguments(in_arg):
         print("* Doesn't Check the Command Line Arguments because 'get_input_args' hasn't been defined.")
     else:
         # prints command line agrs
-        print("Command Line Arguments:\n     dir =", in_arg.dir, 
+        print("\nCommand Line Arguments:\n     dir =", in_arg.dir, 
               "\n    arch =", in_arg.arch, "\n dogfile =", in_arg.dogfile)
 
 def check_creating_pet_image_labels(results_dic):
@@ -28,7 +28,7 @@ def check_creating_pet_image_labels(results_dic):
     """
 
     if results_dic is None:
-        print("* Doesn't Check the Results Dictionary because 'get_pet_labels' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'get_pet_labels' hasn't been defined.\n")
     else:
         # Code to print 10 key-value pairs (or fewer if less than 10 images)
         # & makes sure there are 40 pairs, one for each file in pet_images/
@@ -75,9 +75,9 @@ def check_classifying_images(results_dic):
     """
 
     if results_dic is None:
-        print("* Doesn't Check the Results Dictionary because 'classify_images' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'classify_images' hasn't been defined.\n")
     elif len(results_dic[next(iter(results_dic))]) < 2:
-        print("* Doesn't Check the Results Dictionary because 'classify_images' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'classify_images' hasn't been defined.\n")
     else:
 
         # Code for checking classify_images 
@@ -89,7 +89,10 @@ def check_classifying_images(results_dic):
         n_notmatch = 0
     
         # Prints all Matches first
-        print("\n     MATCH:")
+        print("\nAll image matches:")
+        print("| Name                              | Real                       | Classifier                                                        |")
+        print("--------------------------------------------------------------------------------------------------------------------------------------")
+
         for key in results_dic:
 
             # Prints only if a Match Index 2 == 1
@@ -97,11 +100,16 @@ def check_classifying_images(results_dic):
 
                 # Increments Match counter
                 n_match += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}".format(key, 
+                print("\n{:>36}| {:>27}| {:>66}|".format(key, 
                       results_dic[key][0], results_dic[key][1]))
 
+        print("--------------------------------------------------------------------------------------------------------------------------------------")
+
         # Prints all NOT-Matches next
-        print("\n NOT A MATCH:")
+        print("\nImages that didn't match:")
+        print("| Name                              | Real                       | Classifier                                                        |")
+        print("--------------------------------------------------------------------------------------------------------------------------------------")
+
         for key in results_dic:
         
             # Prints only if NOT-a-Match Index 2 == 0 
@@ -109,12 +117,14 @@ def check_classifying_images(results_dic):
  
                 # Increments Not-a-Match counter
                 n_notmatch += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}".format(key,
+                print("\n{:>36}| {:>27}| {:>66}|".format(key,
                       results_dic[key][0], results_dic[key][1]))
+        print("--------------------------------------------------------------------------------------------------------------------------------------")
 
         # Prints Total Number of Images - expects 40 from pet_images folder
-        print("\n# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
+        print("# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
               "# NOT Matches:",n_notmatch)
+        print("--------------------------------------------------------------------------------------------------------------------------------------")
 
  
 def check_classifying_labels_as_dogs(results_dic):
@@ -141,9 +151,9 @@ def check_classifying_labels_as_dogs(results_dic):
     """
 
     if results_dic is None:
-        print("* Doesn't Check the Results Dictionary because 'adjust_results4_isadog' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'adjust_results4_isadog' hasn't been defined.\n")
     elif len(results_dic[next(iter(results_dic))]) < 4 :
-        print("* Doesn't Check the Results Dictionary because 'adjust_results4_isadog' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'adjust_results4_isadog' hasn't been defined.\n")
 
     else:
         # Code for checking adjust_results4_isadog
@@ -156,7 +166,10 @@ def check_classifying_labels_as_dogs(results_dic):
         n_notmatch = 0
     
         # Prints all Matches first
-        print("\n     MATCH:")
+        print("\n\nImages classified correctly with IS-A-DOG marks:")
+        print("| Name                              | Real                       | Classifier                                                        | Image label = Dog | Classifier label = Dog |")
+        print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
         for key in results_dic:
 
             # Prints only if a Match Index 2 == 1
@@ -164,12 +177,17 @@ def check_classifying_labels_as_dogs(results_dic):
 
                 # Increments Match counter
                 n_match += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}  \nPetLabelDog: {:1d}  ClassLabelDog: {:1d}".format(key,
+                print("\n{:>36}| {:>27}| {:>66}| {:>18}| {:>23}|".format(key,
                       results_dic[key][0], results_dic[key][1], results_dic[key][3], 
                       results_dic[key][4]))
 
+        print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
         # Prints all NOT-Matches next
-        print("\n NOT A MATCH:")
+        print("\nINcorrect classification with IS-A-DOG marks:")
+        print("| Name                              | Real                       | Classifier                                                        | Image label = Dog | Classifier label = Dog |")
+        print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
         for key in results_dic:
         
             # Prints only if NOT-a-Match Index 2 == 0 
@@ -177,13 +195,16 @@ def check_classifying_labels_as_dogs(results_dic):
  
                 # Increments Not-a-Match counter
                 n_notmatch += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}  \nPetLabelDog: {:1d}  ClassLabelDog: {:1d}".format(key,
+                print("\n{:>36}| {:>27}| {:>66}| {:>18}| {:>23}|".format(key,
                       results_dic[key][0], results_dic[key][1], results_dic[key][3], 
                       results_dic[key][4]))
 
+        print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
         # Prints Total Number of Images - expects 40 from pet_images folder
-        print("\n# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
+        print("# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
               "# NOT Matches:",n_notmatch)
+        print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
 
 
 
@@ -212,7 +233,7 @@ def check_calculating_results(results_dic, results_stats_dic):
      Nothing - just prints to console  
     """
     if results_stats_dic is None:
-        print("* Doesn't Check the Results Dictionary because 'calculates_results_stats' hasn't been defined.")
+        print("\n* Doesn't Check the Results Dictionary because 'calculates_results_stats' hasn't been defined.\n")
     else:
         # Code for checking results_stats_dic -
         # Checks calculations of counts & percentages BY using results_dic
@@ -276,14 +297,10 @@ def check_calculating_results(results_dic, results_stats_dic):
         pct_corr_breed = ( n_match_breed / n_pet_dog )*100
     
         # prints calculated statistics
-        print("\n ** Statistics from calculates_results_stats() function:")
-        print("N Images: {:2d}  N Dog Images: {:2d}  N NotDog Images: {:2d} \nPct Corr dog: {:5.1f} Pct Corr NOTdog: {:5.1f}  Pct Corr Breed: {:5.1f}".format(
+        print("\n\nGeneral statistics:")
+        print("\nNumber of images: {:2d}  \nNumber of images with dogs: {:2d}  \nNumber of other images: {:2d} \n\nCorrect dog classification: {:5.1f}% \nCorrect not dog classification: {:5.1f}%  \nCorrect dog's breed classification: {:5.1f}%\n".format(
               results_stats_dic['n_images'], results_stats_dic['n_dogs_img'],
               results_stats_dic['n_notdogs_img'], results_stats_dic['pct_correct_dogs'],
               results_stats_dic['pct_correct_notdogs'],
               results_stats_dic['pct_correct_breed']))
         
-        print("\n ** Check Statistics - calculated from this function as a check:")
-        print("N Images: {:2d}  N Dog Images: {:2d}  N NotDog Images: {:2d} \nPct Corr dog: {:5.1f} Pct Corr NOTdog: {:5.1f}  Pct Corr Breed: {:5.1f}".format(
-              n_images, n_pet_dog, n_pet_notd, pct_corr_dog, pct_corr_notdog,
-              pct_corr_breed))

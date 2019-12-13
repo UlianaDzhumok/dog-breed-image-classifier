@@ -1,4 +1,4 @@
- def calculates_results_stats(results_dic):
+def calculates_results_stats(results_dic):
     
     """
     Calculates statistics of the results of the program run using classifier's model 

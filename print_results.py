@@ -31,15 +31,19 @@ def print_results(results_dic, results_stats_dic, model,
            None - simply printing results.
     """    
     
+    print("\nClassification results:")
+
     for key, value in results_stats_dic.items():
         print("{}: {}".format(key, value))
-        
+     
+    print("\nNumber of images identified as INCORRECT ITEM:")   
     if print_incorrect_dogs==True:
         if results_stats_dic["n_correct_dogs"] + results_stats_dic["n_correct_notdogs"] != results_stats_dic["n_images"]:
             for key,value in results_dic.items():
                 if sum(value[3:]) == 1:
                     print("{} not equal to {}".format(value[0],value[1]))
                     
+    print("\nNumber of images identified as INCORRECT DOG'S BREED:")
     if print_incorrect_breed==True:
         if results_stats_dic["n_correct_dogs"] != results_stats_dic["n_correct_breed"]:
             for key,value in results_dic.items():
